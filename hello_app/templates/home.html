@@ -7,12 +7,15 @@ Home
 <p>We could host QI-related functions here and have easy access to computational resources via Azure.</p>
 <br>
 <p>Context:</p>
-<textarea style="height:120px;width:300px;">
+<textarea id="context" style="height:120px;width:300px;">
 As you can see, once there's enough text in this box, the box will grow scroll bars... that's why we call it a scroll box! You could also place an image into the scroll box.
 </textarea>
 <p>Question:</p>
-<textarea style="height:60px;width:250px;">
+<textarea id="question" style="height:60px;width:250px;">
 Ask your question
 </textarea>
-<button type="button" class="submit" onclick="console.log('Hello world!')">Submit</button>
+<br>
+<button type="button" id="submit" onclick="console.log('FOOBAR')">Submit</button>
+<p> ------------------------------------ </p>
+<p id="answer">Answer: </p>
 {% endblock %}
