@@ -5,7 +5,7 @@ from . import app
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        out = "Context = " + request.context + ", Question = " + request.question
+        out = request#"Context = " + request.context + ", Question = " + request.question
         return render_template("home.html") + out
     return render_template("home.html")
 
