@@ -6,22 +6,24 @@ Home
 <p>This is a Python web app running on the Azure cloud.</p>
 <p>We could host QI-related functions here and have easy access to computational resources via Azure.</p>
 <br>
-<div style="border:1px solid gold">
+<div style="border:1px solid gold" width="420px">
 <p>Example usage</p>
 <p>Context: "The quick brown fox jumps over the lazy dog."</p>
 <p>Question: "What color is the fox?"</p>
 <p>Expected answer: "brown"
-<div>
+</div>
+<br>
 <br>
 <form action="" method="post">
-	<p>Source text:
+	<p>Source text:</p>
 	<textarea id="context" name="context" style="height:120px;width:300px;">
 	Enter text for the model to search over.
 	</textarea>
-	<p>Question</p>
+	<p>Question:</p>
 	<textarea id="question" name="question" style="height:60px;width:250px;">
 	Pose a question to the model about the above text.
 	</textarea>
+	<br>
 	<input type="submit" value="Submit">
 </form>
 <hr/>
