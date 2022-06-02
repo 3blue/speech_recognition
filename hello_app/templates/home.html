@@ -6,13 +6,17 @@ Home
 <p>This is a Python web app running on the Azure cloud.</p>
 <p>We could host QI-related functions here and have easy access to computational resources via Azure.</p>
 <br>
+<p>Example usage</p>
+<p>Context: "The quick brown fox jumps over the lazy dog."</p>
+<p>Question: "What color is the fox?"</p>
+<p>Expected answer: "brown"
 <p>Context:</p>
 <textarea id="context" style="height:120px;width:300px;">
-As you can see, once there's enough text in this box, the box will grow scroll bars... that's why we call it a scroll box! You could also place an image into the scroll box.
+Enter text for the model to search over.
 </textarea>
 <p>Question:</p>
 <textarea id="question" style="height:60px;width:250px;">
-Ask your question
+Pose a question to the model about the above text.
 </textarea>
 <br>
 <button type="button" id="submit" onclick="console.log('FOOBAR')">Submit</button>
