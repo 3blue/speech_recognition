@@ -1,14 +1,16 @@
 from datetime import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from . import app
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
+    if request.method == 'POST':
+        return render_template("home.html") + foo()
     return render_template("home.html")
 
 @app.route("/about/")
 def about():
-    return render_template("home.html") + "LOL!!!!"
+    return render_template("about.html")
 
 
 @app.route("/contact/")
@@ -27,3 +29,7 @@ def hello_there(name = None):
 @app.route("/api/data")
 def get_data():
     return app.send_static_file("data.json")
+
+
+def foo():
+    return "I sat by the Ocean"
