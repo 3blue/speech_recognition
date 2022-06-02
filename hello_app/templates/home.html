@@ -5,12 +5,12 @@ Home
 {% block content %}
 <p>This is a Python web app running on the Azure cloud.</p>
 <p>We could host QI-related functions here and have easy access to computational resources via Azure.</p>
-<br>
-<div style="border:1px solid gold;width:420px;display:block">
+<br><br>
+<div style="border:1px solid gold;width:500px;display:block">
 	<p>Example usage</p>
-	<p>Context: "The quick brown fox jumps over the lazy dog."</p>
+	<p>Source text: "The quick brown fox jumps over the lazy dog."</p>
 	<p>Question: "What color is the fox?"</p>
-	<p>Expected answer: "brown"
+	<p>Expected answer: "Brown"
 </div>
 <br><br>
 <form action="" method="post">
@@ -21,5 +21,6 @@ Home
 	<br><br>
 	<input type="submit" value="Submit">
 </form>
+<br>
 <hr/>
 {% endblock %}
