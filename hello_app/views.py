@@ -1,3 +1,5 @@
+import requests
+import json
 from datetime import datetime
 from flask import Flask, render_template, request
 from . import app
@@ -5,7 +7,9 @@ from . import app
 @app.route("/", methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
-        out = request#"Context = " + request.context + ", Question = " + request.question
+        response = query(request.form['question'], request.form['context'])
+        response = ''.join( c for c in response if  c not in '[]",' )
+        out = "THE MODEL SAYS: " + response
         return render_template("home.html") + out
     return render_template("home.html")
 
@@ -32,5 +36,20 @@ def get_data():
     return app.send_static_file("data.json")
 
 
-def foo():
-    return "I sat by the Ocean"
+def query(question, context):
+
+    scoring_uri = 'http://a969e5da-ec26-4ceb-967c-4d8f2c25f65a.eastus.azurecontainer.io/score'
+    key = 'MOdyhuXuBfxZFv04xWMyXB6ejMAcLKBv'
+
+    # Set the appropriate headers
+    headers = {"Content-Type": "application/json"}
+    headers["Authorization"] = f"Bearer {key}"
+
+    # Make the request and display the response and logs
+    data = {
+        "query": question,
+        "context": context,
+    }
+    data = json.dumps(data)
+    resp = requests.post(scoring_uri, data=data, headers=headers)
+    return resp.text
