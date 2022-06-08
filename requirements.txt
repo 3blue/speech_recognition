@@ -1,4 +1,3 @@
 Flask
 requests
-pyaudio
-SpeechRecognition
+azure-cognitiveservices-speech
