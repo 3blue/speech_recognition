@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from flask import Flask, render_template, request
 from . import app
-import azure.cognitiveservices.speech as speechsdk
+import speech_recognition as sr
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -55,23 +55,13 @@ def query(question, context):
     resp = requests.post(scoring_uri, data=data, headers=headers)
     return resp.text
     
-def recognize_from_microphone():
-    speech_config = speechsdk.SpeechConfig(subscription="6138afae6da245e19d77fd3beb8869aa", region="eastus")
-    speech_config.speech_recognition_language="en-US"
-
-    audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
-    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
-
-    print("Speak into your microphone.")
-    speech_recognition_result = speech_recognizer.recognize_once_async().get()
-
-    if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
-        print("Recognized: {}".format(speech_recognition_result.text))
-    elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
-        print("No speech could be recognized: {}".format(speech_recognition_result.no_match_details))
-    elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
-        cancellation_details = speech_recognition_result.cancellation_details
-        print("Speech Recognition canceled: {}".format(cancellation_details.reason))
-        if cancellation_details.reason == speechsdk.CancellationReason.Error:
-            print("Error details: {}".format(cancellation_details.error_details))
-            print("Did you set the speech resource key and region values?")
+def listen_to_mic():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Speak Anything :")
+        audio = r.listen(source)
+        try:
+            text = r.recognize_google(audio)
+            print("You said : {}".format(text))
+        except:
+            print("Sorry could not recognize what you said")
